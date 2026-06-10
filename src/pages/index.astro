@@ -1,3 +1,6 @@
+---
+---
+
 <!doctype html>
 <html lang="hu">
 <head>
@@ -14,6 +17,11 @@
       --muted: #9ca3af;
     }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
     * {
       margin: 0;
       padding: 0;
@@ -24,30 +32,24 @@
     body {
       background: var(--bg);
       color: var(--text);
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
     }
 
     /* NAVBAR */
+
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 25px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: transparent;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      z-index: 100;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 20px;
+  display: flex;
+  justify-content: center; /* <-- EZ A LÉNYEG */
+  align-items: center;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  z-index: 100;
+}
 
     .logo {
       font-weight: bold;
@@ -55,136 +57,502 @@
       letter-spacing: 1px;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 35px;
-      padding: 15px 40px;
-      background: rgba(30, 41, 59, 0.55) !important; 
-      backdrop-filter: blur(15px);       
-      border-radius: 50px;               
-      border: 2px solid rgba(59, 130, 246, 0.7) !important; 
-      box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.6); 
-      max-width: fit-content; 
-    }
 
-    nav a {
-      position: relative;
-      text-decoration: none;
-      color: #9ca3af !important;
-      transition: 0.3s;
-      padding: 8px 0;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.9px;
-      text-transform: uppercase;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-    }
+/* EZ LESZ AZ OVÁLIS KAPSZULA MÖGÖTTÜK */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  padding: 15px 40px;
+  
+  /* --- AZ ÉN JAVASLATOM: JÓL LÁTHATÓ TECH-KÉK ÜVEG HÁTTÉR --- */
+  background: rgba(30, 41, 59, 0.55) !important; 
+  backdrop-filter: blur(15px);       
+  border-radius: 50px;               
+  
+  /* Biztosra megyünk: kap egy határozott, elegáns kék keretet */
+  border: 2px solid rgba(59, 130, 246, 0.7) !important; 
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.6); 
+  max-width: fit-content; 
+}
 
+/* MENÜPONTOK STÍLUSA */
+nav a {
+  position: relative;
+  text-decoration: none;
+  color: var(--muted);
+  transition: 0.3s;
+  padding: 8px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* A linkeket összefogó konténer - ez rakja őket egymás alá */
+.contact-links {
+  display: flex;
+  flex-direction: column; /* Szigorúan egymás alá rakja az elemeket */
+  gap: 15px;              /* Távolság a két link között */
+  align-items: center;    /* Vízszintesen középre igazítja őket a kártyán belül */
+  margin-top: 20px;
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none; /* <-- Ez leveszi a gyári aláhúzást */
+  color: #ffffff !important; /* <-- A feliratok (Email:, LinkedIn:) maradjanak fehérek */
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+/* Kifejezetten a kattintható címek (info@netopslab.hu és a linkedin URL) színe */
+.contact-item span:last-child {
+  color: #60a5fa !important; /* Jól olvasható, világos hálózati kék */
+  text-decoration: none;
+}
+
+/* Hover effekt: ha fölé viszed az egeret */
+.contact-item:hover span:last-child {
+  color: #3b82f6 !important;  /* Élénkebb kékre vált */
+  text-decoration: underline; /* Csak ekkor húzza alá */
+}
+
+/* --- A HAMBURGER GOMB STÍLUSA (Asztali gépen teljesen rejtve van) --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 110; /* Hogy a menü felett maradjon */
+}
+
+/* A hamburger gomb 3 fehér vonala */
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* --- REJSZPONZÍV VARÁZSLAT MOBILRA ÉS TABLETRE (1024px alatt) --- */
+@media (max-width: 1024px) {
+  header {
+    justify-content: flex-end; /* Mobilon a gombot kitolja a jobb szélre */
+    padding: 20px;
+  }
+
+  .hamburger {
+    display: flex; /* Mobilon megjelenik a 3 vonal */
+  }
+
+ /* A kapszula mobilos lenyíló kártyája */
+  nav.nav-menu {
+    position: absolute;
+    top: -500px; /* Alapból elrejtve fent */
+    right: 20px;
+    left: 20px;
+    max-width: none;
+    flex-direction: column; /* Egymás alá rakja a pontokat */
+    gap: 25px;
+    padding: 35px 20px;
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease-in-out;
+    
+    /* --- EZ MEGVÉDI A SZÖVEGET: TÖMÖR, SÖTÉT KÉKÜVEG HÁTTÉR --- */
+    background: rgba(10, 17, 39, 0.98) !important; 
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(59, 130, 246, 0.8) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  }
+
+/* Amikor megnyitod a hamburgerrel */
+  nav.nav-menu.active {
+    top: 80px; /* Beúszik a képernyőre */
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Mobilos menüpontok finomhangolása (középre zárás, jobb olvashatóság) */
+  nav.nav-menu a {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    color: #ffffff !important; /* tiszta fehér betűk a tökéletes kontraszthoz */
+  }
+
+  /* ANIMÁCIÓ: A hamburger gomb X-é változik, amikor aktív */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0; /* A középső vonal eltűnik */
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+}
     nav a:hover {
-      color: #ffffff !important;
+  color: var(--text);
+}
+
+nav a.active {
+  color: var(--accent);
+}
+
+  #net-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  }
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: 0.3s;
+  box-shadow: 0 0 12px var(--accent);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+    /* HERO */
+   .hero {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+    .hero-content {
+     position: relative;
+     z-index: 2;
     }
 
-    nav a.active, 
-    nav.nav-menu a.active {
-      color: #3b82f6 !important;
+    /* ==================== FŐOLDAL (HERO) STÍLUSOK ==================== */
+
+/* Háttér és konténer igazítása */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+.hero-container {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+
+/* A leírás végén lévő kiemelt mondat tiszta fehér és hangsúlyos lesz */
+.hero-highlight {
+  color: #ffffff !important;
+  font-weight: 700;
+  border-bottom: 1px dashed rgba(59, 130, 246, 0.4); /* Egy nagyon finom, szaggatott kék aláhúzás a nyomaték kedvéért */
+  padding-bottom: 2px;
+}
+
+/* Felső jelvény pulzálással */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 6px 16px;
+  border-radius: 30px;
+  color: #60a5fa;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.pulse-glow {
+  width: 6px;
+  height: 6px;
+  background: #22c55e; /* Én zöldet raknék ide, mint a fenti menüdben, utalva arra, hogy a rendszer ONLINE */
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* Főcím (Név) - Fehér, vastag, pici betűközzel és kék mélységgel */
+.hero-title {
+  font-size: 4.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  /* Finom kék aura a betűk mögött, nagyon jól mutat a plexus háttérrel */
+  text-shadow: 0 0 40px rgba(59, 130, 246, 0.15); 
+}
+
+/* Szakterületek */
+/* Tag-ek (Címszavak) */
+.hero-tags {
+  display: flex;
+  gap: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.hero-tags .tag { color: #60a5fa; }
+.tag-divider { color: #334155; }
+
+.tag-divider {
+  color: #475569;
+}
+
+/* Leírás */
+.hero-description {
+  font-size: 1.15rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  max-width: 680px;
+  text-align: center;
+}
+
+.hero-description strong {
+  color: #ffffff;
+}
+
+/* A te tiszta fehér, új soros kiemelésed */
+.hero-highlight-block {
+  display: block;
+  margin-top: 16px;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+/* ==================== GOMBOK ÚJRATERVEZÉSE ==================== */
+
+/* Gombok dizájnja */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #ffffff !important;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+}
+.btn-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.02);
+  color: #ffffff !important;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
+  backdrop-filter: blur(5px);
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(59, 130, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+/* 📱 RESZPONZÍV JAVÍTÁSOK MOBILRA */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.8rem; /* Kisebb kijelzőn ne törjön csúnyán a neved */
+  }
+  
+  .hero-tags {
+    font-size: 1.1rem;
+    flex-direction: column; /* Mobilon egymás alá rakja a 3 fő profilt */
+    gap: 5px;
+  }
+  
+  .tag-divider {
+    display: none; /* Mobilon nincs szükség a pontokra az elválasztáshoz */
+  }
+  
+  .hero-buttons {
+    flex-direction: column; /* Egymás alá rakja a két gombot a telefonon */
+    width: 100%;
+    max-width: 300px;
+    gap: 12px;
+  }
+  
+  .btn-primary, .btn-secondary {
+    text-align: center;
+    width: 100%; /* Teljes szélességű gombok mobilon a könnyű klikkelésért */
+  }
+}
+
+.proof {
+  padding: 40px 10%;
+  position: relative;
+  z-index: 2;
+  background: rgba(11, 18, 36, 0.6);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.proof-items {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #e5e7eb;
+}
+
+.proof-items div {
+  padding: 10px 14px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+    h1 {
+      font-size: 3.5rem;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 0%;
-      height: 2px;
-      background: var(--accent);
-      transition: 0.3s;
-      box-shadow: 0 0 12px var(--accent);
+    h1 span {
+      color: var(--accent);
     }
 
-    nav a:hover::after {
-      width: 100%;
+    h2 {
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 400;
     }
 
-    .dot {
+    p {
+      margin-top: 20px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .btn {
       display: inline-block;
-      width: 10px;
-      height: 10px;
-      margin-right: 12px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 10px #22c55e;
-      animation: pulse 1.6s infinite;
-      vertical-align: middle;
+      padding: 12px 20px;
+      margin-right: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      background: var(--accent);
+      color: white;
+      transition: 0.2s;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.4; }
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
-    /* HAMBURGER */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
+    .btn.secondary {
       background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 110;
+      border: 1px solid var(--accent);
     }
 
-    .hamburger span {
-      width: 100%;
-      height: 3px;
-      background-color: #fff;
-      border-radius: 3px;
-      transition: all 0.3s ease;
-    }
+   section {
+  /* Elérjük, hogy minden szekció legalább a teljes kijelző magasságát elfoglalja PC-n és mobilon is */
+  min-height: 100vh; 
+  
+  /* Belvilág: fentről adunk egy nagyobb védőtávolságot (80px-100px), 
+     hogy a fixen rögzített fenti ovális menüsorod NE takarja el a szekciók főcímeit ugráskor */
+  padding-top: 100px; 
+  padding-bottom: 40px;
 
-    /* SECTIONS GENERAL */
-    section {
-      min-height: 100vh; 
-      padding-top: 120px; 
-      padding-bottom: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; 
-      align-items: center;
-      box-sizing: border-box;
-      position: relative;
-      z-index: 1;
-    }
+  /* Flexbox segítségével a szekció tartalmát (pl. a Kapcsolat kártyát) 
+     szépen függőlegesen és vízszintesen is középre húzzuk */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  
+  /* Biztosítjuk, hogy a szekciók tiszta határokkal váljanak el egymástól */
+  box-sizing: border-box;
+}
 
     .section-title {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin-bottom: 40px;
-      color: #fff;
-      text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      width: 100%;
-      max-width: 1100px;
-      padding: 0 20px;
     }
 
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 12px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: pulse 1.6s infinite;
+  vertical-align: middle;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+}
     .card {
       background: var(--card);
-      padding: 30px;
+      padding: 20px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.05);
-      width: 100%;
-      max-width: 800px;
     }
 
     .card h3 {
@@ -192,353 +560,101 @@
       margin-bottom: 10px;
     }
 
-    /* BACKGROUND CANVAS */
-    #net-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* HERO STYLES */
-    .hero-section {
-      padding-top: 80px;
-    }
-
-    .hero-container {
-      max-width: 800px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      text-align: center;
-    }
-
-    .tech-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(59, 130, 246, 0.08);
-      border: 1px solid rgba(59, 130, 246, 0.25);
-      padding: 6px 16px;
-      border-radius: 30px;
-      color: #60a5fa;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-
-    .pulse-glow {
-      width: 6px;
-      height: 6px;
-      background: #22c55e;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #22c55e;
-    }
-
-    .hero-title {
-      font-size: 4.2rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin: 0;
-      letter-spacing: 0.5px;
-      line-height: 1.1;
-      text-shadow: 0 0 40px rgba(59, 130, 246, 0.15); 
-    }
-
-    .hero-tags {
-      display: flex;
-      gap: 15px;
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-
-    .hero-tags .tag { color: #60a5fa; }
-    .tag-divider { color: #475569; }
-
-    .hero-description {
-      font-size: 1.15rem;
-      color: #94a3b8;
-      line-height: 1.7;
-      max-width: 680px;
-    }
-
-    .hero-highlight-block {
-      display: block;
-      margin-top: 16px;
-      color: #ffffff !important;
-      font-weight: 700;
-      font-size: 1.3rem;
-      letter-spacing: 0.5px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .btn-primary {
-      background: #2563eb;
-      color: #ffffff !important;
-      text-decoration: none;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
-    }
-
-    .btn-primary:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.02);
-      color: #ffffff !important;
-      text-decoration: none;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-weight: 600;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: all 0.25s ease;
-      backdrop-filter: blur(5px);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(59, 130, 246, 0.5);
-      transform: translateY(-2px);
-    }
-
-    /* PROOF SECTION */
-    .proof {
-      min-height: auto;
-      padding: 40px 10%;
-      background: rgba(11, 18, 36, 0.6);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .proof-items {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      color: #e5e7eb;
-    }
-
-    .proof-items div {
-      padding: 10px 14px;
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.2);
-      border-radius: 10px;
-      font-size: 0.95rem;
-    }
-
-    /* CONTACT CARD */
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    .contact-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: #ffffff !important;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-    }
-
-    .contact-item span:last-child {
-      color: #60a5fa !important;
-    }
-
-    .contact-item:hover span:last-child {
-      color: #3b82f6 !important;
-      text-decoration: underline;
-    }
-
-    /* RESPONSIVE DESIGN */
-    @media (max-width: 1024px) {
-      header {
-        justify-content: flex-end;
-        padding: 20px;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      nav.nav-menu {
-        position: absolute;
-        top: -600px;
-        right: 20px;
-        left: 20px;
-        max-width: none;
-        flex-direction: column;
-        gap: 25px;
-        padding: 35px 20px;
-        border-radius: 20px;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.4s ease-in-out;
-        background: rgba(10, 17, 39, 0.98) !important; 
-        backdrop-filter: blur(20px);
-        border: 2px solid rgba(59, 130, 246, 0.8) !important;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-      }
-
-      nav.nav-menu.active {
-        top: 80px;
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      nav.nav-menu a {
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-        font-size: 1.2rem;
-        color: #ffffff !important;
-      }
-
-      .hamburger.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-      }
-      .hamburger.active span:nth-child(2) {
-        opacity: 0;
-      }
-      .hamburger.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.8rem;
-      }
-      
-      .hero-tags {
-        font-size: 1.1rem;
-        flex-direction: column;
-        gap: 5px;
-      }
-      
-      .tag-divider {
-        display: none;
-      }
-      
-      .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-        gap: 12px;
-      }
-      
-      .btn-primary, .btn-secondary {
-        text-align: center;
-        width: 100%;
-      }
-    }
-
     footer {
       padding: 40px;
       text-align: center;
       color: var(--muted);
       border-top: 1px solid rgba(255,255,255,0.05);
-      position: relative;
-      z-index: 1;
     }
   </style>
 </head>
 
 <body>
-  <canvas id="net-bg"></canvas>
-
+<canvas id="net-bg"></canvas>
+  <!-- NAV -->
   <header>
-    <button class="hamburger" aria-label="Menü megnyitása">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <nav class="nav-menu">  
-      <a href="#home" class="active">Főoldal</a>
-      <a href="#services">Szolgáltatások</a>
-      <a href="#solutions">Megoldások</a>
-      <a href="#projects">Projektek</a>
-      <a href="#contact">Kapcsolat</a>
-    </nav>
+  <button class="hamburger" aria-label="Menü megnyitása">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav class="nav-menu">  
+  <a href="#home" class="active">
+    <span class="dot"></span> Főoldal
+  </a>
+  <a href="#services">Szolgáltatások</a>
+   <a href="#solutions">Megoldások</a>
+   <a href="#projects">Projektek</a>
+  <a href="#contact">Kapcsolat</a>
+</nav>
   </header>
 
-  <section id="home" class="hero-section">
-    <div class="hero-container">
-      <div class="tech-badge">
-        <span class="pulse-glow"></span> NETWORKS & SECURITY
-      </div>
-
-      <h1 class="hero-title">Nagy Attila</h1>
-      
-      <div class="hero-tags">
-        <span class="tag">Hálózatüzemeltetés</span>
-        <span class="tag-divider">•</span>
-        <span class="tag">IT-biztonság</span>
-        <span class="tag-divider">•</span>
-        <span class="tag">Linux rendszerek</span>
-      </div>
-
-      <p class="hero-description">
-        Vállalati infrastruktúrák tervezése, magas rendelkezésre állású hálózatok üzemeltetése és NIS2 / ISO 27001 szintű IT-biztonsági auditra való felkészítés.
-        <span class="hero-highlight-block">Stabil rendszerek, kiszámítható működés.</span>
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#contact" class="btn-primary">
-          <span>Kapcsolat felvétele</span>
-          <span class="btn-icon">→</span>
-        </a>
-        <a href="#services" class="btn-secondary">
-          <span>Szolgáltatások</span>
-        </a>
-      </div>
+  <!-- HERO -->
+ <section id="home" class="hero-section">
+  <div class="hero-container">
+    
+    <div class="tech-badge">
+      <span class="pulse-glow"></span> NETWORKS & SECURITY
     </div>
-  </section>
 
-  <section class="proof">
-    <div class="proof-items">
-      <div>✔ Linux szerver üzemeltetés</div>
-      <div>✔ Hálózati infrastruktúra</div>
-      <div>✔ Synology / backup rendszerek</div>
-      <div>✔ IT security alapok</div>
+    <h1 class="hero-title">Nagy Attila</h1>
+    
+    <div class="hero-tags">
+      <span class="tag">Hálózatüzemeltetés</span>
+      <span class="tag-divider">•</span>
+      <span class="tag">IT-biztonság</span>
+      <span class="tag-divider">•</span>
+      <span class="tag">Linux rendszerek</span>
     </div>
-  </section>
 
+    <p class="hero-description">
+      Vállalati infrastruktúrák tervezése, magas rendelkezésre állású hálózatok üzemeltetése és NIS2 / ISO 27001 szintű IT-biztonsági auditra való felkészítés.
+      <span class="hero-highlight-block">Stabil rendszerek, kiszámítható működés.</span>
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">
+        <span>Kapcsolat felvétele</span>
+        <span class="btn-icon">→</span>
+      </a>
+      <a href="#services" class="btn-secondary">
+        <span>Szolgáltatások</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- 🚀 PROOF SOR (EZ JÖN UTÁNA) -->
+<section class="proof">
+  <div class="proof-items">
+    <div>✔ Linux szerver üzemeltetés</div>
+    <div>✔ Hálózati infrastruktúra</div>
+    <div>✔ Synology / backup rendszerek</div>
+    <div>✔ IT security alapok</div>
+  </div>
+</section>
+
+  <!-- SERVICES -->
   <section id="services">
     <h2 class="section-title">Szolgáltatások</h2>
+
     <div class="grid">
       <div class="card">
         <h3>Hálózatüzemeltetés</h3>
         <p>Routerek, switchek, infrastruktúra tervezés és karbantartás.</p>
       </div>
+
       <div class="card">
         <h3>IT-biztonság</h3>
         <p>Hozzáférés-kezelés, alap biztonsági audit, védelem.</p>
       </div>
+
       <div class="card">
         <h3>Linux rendszerek</h3>
         <p>Szerverek telepítése, üzemeltetése és optimalizálása.</p>
       </div>
+
       <div class="card">
         <h3>Virtualizáció / NAS</h3>
         <p>Synology, mentések, rendszerfelügyelet.</p>
@@ -546,149 +662,121 @@
     </div>
   </section>
 
-  <section id="solutions">
-    <h2 class="section-title">Megoldások</h2>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">Rólam</h2>
+
     <div class="card">
-      <p>Itt mutathatod be az egyedi vállalati megoldásaidat, redundáns hálózati architektúráidat.</p>
+      <p>
+        Mérnökinformatikus végzettséggel rendelkező IT üzemeltető.
+        Fő fókuszom a stabil, biztonságos és jól menedzselhető infrastruktúrák kialakítása.
+      </p>
     </div>
   </section>
 
-  <section id="projects">
-    <h2 class="section-title">Projektek</h2>
-    <div class="card">
-      <p>Referenciák, korábbi sikeres NIS2 felkészítések és hálózatépítési projektek helye.</p>
-    </div>
-  </section>
+ <section id="contact">
+  <h2 class="section-title">Kapcsolat</h2>
 
-  <section id="contact">
-    <h2 class="section-title">Kapcsolat</h2>
-    <div class="card">
-      <p style="text-align: center; margin-bottom: 20px;">Rendszerüzemeltetéssel, hálózattervezéssel vagy IT-biztonsági felkészítéssel kapcsolatban keressen az alábbi elérhetőségeken!</p>
-      <div class="contact-links">
-        <a href="mailto:info@netopslab.hu" class="contact-item">
-          <span class="icon">✉</span> 
-          <strong>Email:</strong> <span>info@netopslab.hu</span>
-        </a>
-        <a href="https://linkedin.com/in/nagy-attila-it" target="_blank" class="contact-item">
-          <span class="icon">💼</span> 
-          <strong>LinkedIn:</strong> <span>linkedin.com/in/nagy-attila-it</span>
-        </a>
-      </div>
+  <div class="card contact-card">
+    <p class="contact-intro">Rendszerüzemeltetéssel, hálózattervezéssel vagy IT-biztonsági felkészítéssel kapcsolatban keressen az alábbi elérhetőségeken!</p>
+    
+    <div class="contact-links">
+      <a href="mailto:info@netopslab.hu" class="contact-item">
+        <span class="icon">✉</span> 
+        <strong>Email:</strong> <span>info@netopslab.hu</span>
+      </a>
+      
+      <a href="https://linkedin.com/in/nagy-attila-it" target="_blank" class="contact-item">
+        <span class="icon">💼</span> 
+        <strong>LinkedIn:</strong> <span>linkedin.com/in/nagy-attila-it</span>
+      </a>
     </div>
-  </section>
-
+  </div>
+</section>
+<section id="solutions">
+  <h2 class="section-title">Megoldások</h2>
+</section>
   <footer>
     © 2026 Nagy Attila — IT Infrastructure & Security
   </footer>
 
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    const sections = document.querySelectorAll('section, .hero-section');
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+  const navLinks = document.querySelectorAll('.nav-menu a');
 
-    // Mobil menü kezelése
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
+  // Kattintásra kinyitja vagy bezárja a menüt (hozzáadja/elveszi az 'active' osztályt)
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+
+  // Ha a látogató rákattint az egyik menüpontra (pl. Kapcsolat), a menü magától csukódjon be
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
     });
+  });
+</script>
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-      });
-    });
+<script>
+const canvas = document.getElementById("net-bg");
+const ctx = canvas.getContext("2d");
 
-    // ÜZEMBIZTOS SCROLL SPY
-    const observerOptions = {
-      root: null,
-      rootMargin: '-30% 0px -30% 0px',
-      threshold: 0.1
-    };
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
 
-    const observerCallback = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          if (id) {
-            navLinks.forEach(link => {
-              link.classList.remove('active');
-              const oldDot = link.querySelector('.dot');
-              if (oldDot) oldDot.remove();
-            });
+const nodes = Array.from({ length: 70 }, () => ({
+  x: Math.random() * innerWidth,
+  y: Math.random() * innerHeight,
+  vx: (Math.random() - 0.5) * 0.6,
+  vy: (Math.random() - 0.5) * 0.6,
+}));
 
-            const activeLink = document.querySelector(`.nav-menu a[href="#${id}"]`);
-            if (activeLink) {
-              activeLink.classList.add('active');
-              const dot = document.createElement('span');
-              dot.className = 'dot';
-              activeLink.insertBefore(dot, activeLink.firstChild);
-            }
-          }
-        }
-      });
-    };
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    sections.forEach(section => {
-      if(section.getAttribute('id')) observer.observe(section);
-    });
+  // pontok
+  for (const n of nodes) {
+    n.x += n.vx;
+    n.y += n.vy;
 
-    // NET ANIMÁCIÓ (CANVAS)
-    const canvas = document.getElementById("net-bg");
-    const ctx = canvas.getContext("2d");
+    if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+    if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener("resize", resize);
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(59,130,246,0.7)";
+    ctx.fill();
+  }
 
-    const nodes = Array.from({ length: 70 }, () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.6,
-      vy: (Math.random() - 0.5) * 0.6,
-    }));
+  // kapcsolatok
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const a = nodes[i];
+      const b = nodes[j];
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
 
-      // pontok kirajzolása és mozgatása
-      for (const n of nodes) {
-        n.x += n.vx;
-        n.y += n.vy;
-
-        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
-        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-
+      if (d < 130) {
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(59,130,246,0.7)";
-        ctx.fill();
+        ctx.strokeStyle = `rgba(59,130,246,${1 - d / 130})`;
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
       }
-
-      // kapcsolatok (vonalak) kirajzolása
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i];
-          const b = nodes[j];
-          const d = Math.hypot(a.x - b.x, a.y - b.y);
-
-          if (d < 130) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(59,130,246,${1 - d / 130})`;
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(draw);
     }
-    draw();
-  </script>
+  }
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
 </body>
 </html>
