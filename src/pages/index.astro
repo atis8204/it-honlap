@@ -186,27 +186,27 @@
     .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 8px; letter-spacing: 0.5px; }
 
     /* ── RÓLAM ── */
-    #about { background: rgba(11,18,36,0.3); }
+    #about { background: rgba(11,18,36,0.3); padding-top: 120px !important; }
 
     .about-intro {
       max-width: 720px; text-align: center;
       color: #94a3b8; font-size: 1.05rem; line-height: 1.8;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
     }
     .about-intro strong { color: #fff; }
 
     .subsection-label {
       width: 100%; max-width: 1100px;
-      font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;
-      text-transform: none; color: #fff;
-      margin-bottom: 24px; padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.95rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: #cbd5e1;
+      margin-bottom: 24px; padding-bottom: 10px;
+      border-bottom: 1px solid rgba(59,130,246,0.4);
       text-align: center;
     }
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px; width: 100%; max-width: 1100px;
     }
     .skill-card {
@@ -726,8 +726,7 @@
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" style="padding: 60px 40px; min-height: 60vh; justify-content: center;">
+<div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;" id="contact">
   <div class="contact-card">
     <p class="contact-intro">Rendszerüzemeltetéssel, hálózattervezéssel vagy IT-biztonsági felkészítéssel kapcsolatban keress az alábbi elérhetőségeken!</p>
     <div class="contact-links">
@@ -743,7 +742,7 @@
       </a>
     </div>
   </div>
-</section>
+</div>
 
 <footer>© 2026 Nagy Attila — IT Infrastructure & Network Security | Hatvan</footer>
 
