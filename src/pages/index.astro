@@ -125,27 +125,42 @@ nav a {
     display: flex; /* Mobilon megjelenik a 3 vonal */
   }
 
-  /* A te szép kapszula menüd mobilon átalakul egy felülről leugró kártyává */
+ /* A kapszula mobilos lenyíló kártyája */
   nav.nav-menu {
     position: absolute;
-    top: -450px; /* Alapból fent, a képernyőn kívül rejtőzik */
+    top: -500px; /* Alapból elrejtve fent */
     right: 20px;
     left: 20px;
     max-width: none;
-    flex-direction: column; /* Egymás alá rakja a Főoldalt, Szolgáltatásokat stb. */
-    gap: 20px;
-    padding: 30px;
-    border-radius: 25px; /* Kicsit igazítunk a formáján mobilon */
+    flex-direction: column; /* Egymás alá rakja a pontokat */
+    gap: 25px;
+    padding: 35px 20px;
+    border-radius: 20px;
     opacity: 0;
-    pointer-events: none; /* Amíg zárva van, nem lehet rákattintani a rejtett linkekre */
-    transition: all 0.4s ease-in-out; /* Szép, sima beúszás */
+    pointer-events: none;
+    transition: all 0.4s ease-in-out;
+    
+    /* --- EZ MEGVÉDI A SZÖVEGET: TÖMÖR, SÖTÉT KÉKÜVEG HÁTTÉR --- */
+    background: rgba(10, 17, 39, 0.98) !important; 
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(59, 130, 246, 0.8) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
   }
 
-/* AMIKOR NYITVA VAN A MENÜ (JS adja hozzá az 'active' osztályt) */
+/* Amikor megnyitod a hamburgerrel */
   nav.nav-menu.active {
-    top: 85px; /* Beúszik a fejléc alá a képernyőre */
+    top: 80px; /* Beúszik a képernyőre */
     opacity: 1;
     pointer-events: auto;
+  }
+
+  /* Mobilos menüpontok finomhangolása (középre zárás, jobb olvashatóság) */
+  nav.nav-menu a {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    color: #ffffff !important; /* tiszta fehér betűk a tökéletes kontraszthoz */
   }
 
   /* ANIMÁCIÓ: A hamburger gomb X-é változik, amikor aktív */
