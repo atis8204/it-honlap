@@ -91,29 +91,74 @@ nav a {
   white-space: nowrap;
 }
 
-/* 📱 RESZPONZÍV JAVÍTÁS (Hogy mobilon se essen szét az ovális forma) */
+/* --- A HAMBURGER GOMB STÍLUSA (Asztali gépen teljesen rejtve van) --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 110; /* Hogy a menü felett maradjon */
+}
+
+/* A hamburger gomb 3 fehér vonala */
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* --- REJSZPONZÍV VARÁZSLAT MOBILRA ÉS TABLETRE (1024px alatt) --- */
 @media (max-width: 1024px) {
   header {
-    padding: 15px 10px;
+    justify-content: flex-end; /* Mobilon a gombot kitolja a jobb szélre */
+    padding: 20px;
   }
-  nav {
+
+  .hamburger {
+    display: flex; /* Mobilon megjelenik a 3 vonal */
+  }
+
+  /* A te szép kapszula menüd mobilon átalakul egy felülről leugró kártyává */
+  nav.nav-menu {
+    position: absolute;
+    top: -450px; /* Alapból fent, a képernyőn kívül rejtőzik */
+    right: 20px;
+    left: 20px;
+    max-width: none;
+    flex-direction: column; /* Egymás alá rakja a Főoldalt, Szolgáltatásokat stb. */
     gap: 20px;
-    padding: 12px 25px;
+    padding: 30px;
+    border-radius: 25px; /* Kicsit igazítunk a formáján mobilon */
+    opacity: 0;
+    pointer-events: none; /* Amíg zárva van, nem lehet rákattintani a rejtett linkekre */
+    transition: all 0.4s ease-in-out; /* Szép, sima beúszás */
   }
-  nav a {
-    font-size: 0.9rem;
+
+/* AMIKOR NYITVA VAN A MENÜ (JS adja hozzá az 'active' osztályt) */
+  nav.nav-menu.active {
+    top: 85px; /* Beúszik a fejléc alá a képernyőre */
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* ANIMÁCIÓ: A hamburger gomb X-é változik, amikor aktív */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0; /* A középső vonal eltűnik */
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
   }
 }
-
-@media (max-width: 600px) {
-  nav {
-    gap: 12px;
-    padding: 10px 18px;
-    border-radius: 25px;
-    flex-wrap: wrap;
-  }
-}
-
     nav a:hover {
   color: var(--text);
 }
@@ -286,7 +331,12 @@ nav a:hover::after {
 <canvas id="net-bg"></canvas>
   <!-- NAV -->
   <header>
-  <nav>
+  <button class="hamburger" aria-label="Menü megnyitása">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav class="nav-menu">  
   <a href="#home" class="active">
     <span class="dot"></span> Főoldal
   </a>
