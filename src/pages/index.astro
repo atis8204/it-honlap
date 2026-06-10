@@ -432,6 +432,27 @@ nav a:hover::after {
   <footer>
     © 2026 Nagy Attila — IT Infrastructure & Security
   </footer>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+  const navLinks = document.querySelectorAll('.nav-menu a');
+
+  // Kattintásra kinyitja vagy bezárja a menüt (hozzáadja/elveszi az 'active' osztályt)
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+
+  // Ha a látogató rákattint az egyik menüpontra (pl. Kapcsolat), a menü magától csukódjon be
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+    });
+  });
+</script>
+
 <script>
 const canvas = document.getElementById("net-bg");
 const ctx = canvas.getContext("2d");
