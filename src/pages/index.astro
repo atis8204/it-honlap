@@ -91,6 +91,37 @@ nav a {
   white-space: nowrap;
 }
 
+/* A linkeket összefogó konténer - ez rakja őket egymás alá */
+.contact-links {
+  display: flex;
+  flex-direction: column; /* Szigorúan egymás alá rakja az elemeket */
+  gap: 15px;              /* Távolság a két link között */
+  align-items: center;    /* Vízszintesen középre igazítja őket a kártyán belül */
+  margin-top: 20px;
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none; /* <-- Ez leveszi a gyári aláhúzást */
+  color: #ffffff !important; /* <-- A feliratok (Email:, LinkedIn:) maradjanak fehérek */
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+/* Kifejezetten a kattintható címek (info@netopslab.hu és a linkedin URL) színe */
+.contact-item span:last-child {
+  color: #60a5fa !important; /* Jól olvasható, világos hálózati kék */
+  text-decoration: none;
+}
+
+/* Hover effekt: ha fölé viszed az egeret */
+.contact-item:hover span:last-child {
+  color: #3b82f6 !important;  /* Élénkebb kékre vált */
+  text-decoration: underline; /* Csak ekkor húzza alá */
+}
+
 /* --- A HAMBURGER GOMB STÍLUSA (Asztali gépen teljesen rejtve van) --- */
 .hamburger {
   display: none;
@@ -289,10 +320,25 @@ nav a:hover::after {
       border: 1px solid var(--accent);
     }
 
-    /* SECTIONS */
-    section {
-      padding: 100px 10%;
-    }
+   section {
+  /* Elérjük, hogy minden szekció legalább a teljes kijelző magasságát elfoglalja PC-n és mobilon is */
+  min-height: 100vh; 
+  
+  /* Belvilág: fentről adunk egy nagyobb védőtávolságot (80px-100px), 
+     hogy a fixen rögzített fenti ovális menüsorod NE takarja el a szekciók főcímeit ugráskor */
+  padding-top: 100px; 
+  padding-bottom: 40px;
+
+  /* Flexbox segítségével a szekció tartalmát (pl. a Kapcsolat kártyát) 
+     szépen függőlegesen és vízszintesen is középre húzzuk */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  
+  /* Biztosítjuk, hogy a szekciók tiszta határokkal váljanak el egymástól */
+  box-sizing: border-box;
+}
 
     .section-title {
       font-size: 2rem;
@@ -431,16 +477,25 @@ nav a:hover::after {
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2 class="section-title">Kapcsolat</h2>
+ <section id="contact">
+  <h2 class="section-title">Kapcsolat</h2>
 
-    <div class="card">
-      <p>Email: yourmail@domain.hu</p>
-      <p>GitHub: github.com/yourname</p>
-      <p>LinkedIn: linkedin.com/in/yourname</p>
+  <div class="card contact-card">
+    <p class="contact-intro">Rendszerüzemeltetéssel, hálózattervezéssel vagy IT-biztonsági felkészítéssel kapcsolatban keressen az alábbi elérhetőségeken!</p>
+    
+    <div class="contact-links">
+      <a href="mailto:info@netopslab.hu" class="contact-item">
+        <span class="icon">✉</span> 
+        <strong>Email:</strong> <span>info@netopslab.hu</span>
+      </a>
+      
+      <a href="https://linkedin.com/in/nagy-attila-it" target="_blank" class="contact-item">
+        <span class="icon">💼</span> 
+        <strong>LinkedIn:</strong> <span>linkedin.com/in/nagy-attila-it</span>
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 <section id="solutions">
   <h2 class="section-title">Megoldások</h2>
 </section>
