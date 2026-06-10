@@ -250,6 +250,187 @@ nav a:hover::after {
      z-index: 2;
     }
 
+    /* ==================== FŐOLDAL (HERO) STÍLUSOK ==================== */
+
+/* Háttér és konténer igazítása */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+.hero-container {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+
+/* A leírás végén lévő kiemelt mondat tiszta fehér és hangsúlyos lesz */
+.hero-highlight {
+  color: #ffffff !important;
+  font-weight: 700;
+  border-bottom: 1px dashed rgba(59, 130, 246, 0.4); /* Egy nagyon finom, szaggatott kék aláhúzás a nyomaték kedvéért */
+  padding-bottom: 2px;
+}
+
+/* Felső jelvény pulzálással */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 6px 16px;
+  border-radius: 30px;
+  color: #60a5fa;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.pulse-glow {
+  width: 6px;
+  height: 6px;
+  background: #22c55e; /* Én zöldet raknék ide, mint a fenti menüdben, utalva arra, hogy a rendszer ONLINE */
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* Főcím (Név) - Fehér, vastag, pici betűközzel és kék mélységgel */
+.hero-title {
+  font-size: 4.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  /* Finom kék aura a betűk mögött, nagyon jól mutat a plexus háttérrel */
+  text-shadow: 0 0 40px rgba(59, 130, 246, 0.15); 
+}
+
+/* Szakterületek */
+/* Tag-ek (Címszavak) */
+.hero-tags {
+  display: flex;
+  gap: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.hero-tags .tag { color: #60a5fa; }
+.tag-divider { color: #334155; }
+
+.tag-divider {
+  color: #475569;
+}
+
+/* Leírás */
+.hero-description {
+  font-size: 1.15rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  max-width: 680px;
+  text-align: center;
+}
+
+.hero-description strong {
+  color: #ffffff;
+}
+
+/* A te tiszta fehér, új soros kiemelésed */
+.hero-highlight-block {
+  display: block;
+  margin-top: 16px;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+/* ==================== GOMBOK ÚJRATERVEZÉSE ==================== */
+
+/* Gombok dizájnja */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #ffffff !important;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+}
+.btn-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.02);
+  color: #ffffff !important;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
+  backdrop-filter: blur(5px);
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(59, 130, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+/* 📱 RESZPONZÍV JAVÍTÁSOK MOBILRA */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.8rem; /* Kisebb kijelzőn ne törjön csúnyán a neved */
+  }
+  
+  .hero-tags {
+    font-size: 1.1rem;
+    flex-direction: column; /* Mobilon egymás alá rakja a 3 fő profilt */
+    gap: 5px;
+  }
+  
+  .tag-divider {
+    display: none; /* Mobilon nincs szükség a pontokra az elválasztáshoz */
+  }
+  
+  .hero-buttons {
+    flex-direction: column; /* Egymás alá rakja a két gombot a telefonon */
+    width: 100%;
+    max-width: 300px;
+    gap: 12px;
+  }
+  
+  .btn-primary, .btn-secondary {
+    text-align: center;
+    width: 100%; /* Teljes szélességű gombok mobilon a könnyű klikkelésért */
+  }
+}
+
 .proof {
   padding: 40px 10%;
   position: relative;
@@ -409,24 +590,40 @@ nav a:hover::after {
   </header>
 
   <!-- HERO -->
-  <section class="hero" id="home">
-  <div class="container">
-    <div class="hero-content">
-      <h1><span>Nagy Attila</span></h1>
-      <h2>Hálózatüzemeltetés • IT-biztonság • Linux rendszerek</h2>
+ <section id="home" class="hero-section">
+  <div class="hero-container">
+    
+    <div class="tech-badge">
+      <span class="pulse-glow"></span> NETWORKS & SECURITY
+    </div>
 
-      <p>
-        Infrastruktúrák tervezése, üzemeltetése és biztonságos működtetése.
-        Stabil rendszerek, megbízható működés, folyamatos rendelkezésre állás.
-      </p>
+    <h1 class="hero-title">Nagy Attila</h1>
+    
+    <div class="hero-tags">
+      <span class="tag">Hálózatüzemeltetés</span>
+      <span class="tag-divider">•</span>
+      <span class="tag">IT-biztonság</span>
+      <span class="tag-divider">•</span>
+      <span class="tag">Linux rendszerek</span>
+    </div>
 
-      <div class="buttons">
-        <a class="btn" href="#contact">Kapcsolat</a>
-        <a class="btn secondary" href="#services">Szolgáltatások</a>
+    <p class="hero-description">
+      Vállalati infrastruktúrák tervezése, magas rendelkezésre állású hálózatok üzemeltetése és NIS2 / ISO 27001 szintű IT-biztonsági auditra való felkészítés.
+      <span class="hero-highlight-block">Stabil rendszerek, kiszámítható működés.</span>
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">
+        <span>Kapcsolat felvétele</span>
+        <span class="btn-icon">→</span>
+      </a>
+      <a href="#services" class="btn-secondary">
+        <span>Szolgáltatások</span>
       </div>
     </div>
+
   </div>
-  </section>
+</section>
 
 <!-- 🚀 PROOF SOR (EZ JÖN UTÁNA) -->
 <section class="proof">
