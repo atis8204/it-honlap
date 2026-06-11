@@ -777,26 +777,65 @@
   </div>
 </section>
 
-<div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;" id="contact">
-  <div class="contact-card">
-    <p class="contact-intro">Rendszerüzemeltetéssel, hálózattervezéssel vagy IT-biztonsági felkészítéssel kapcsolatban keress az alábbi elérhetőségeken!</p>
-    <div class="contact-links">
-  <a href="tel:+36706389464" class="contact-item">
-    <span>📞</span>
-    <strong>Telefon:</strong>
-    <span class="val">+36 70 638 9464</span>
-  </a>
-  <a href="mailto:info@netopslab.hu" class="contact-item">
-    <span>✉</span>
-    <strong>Email:</strong>
-    <span class="val">info@netopslab.hu</span>
-  </a>
-  <a href="https://linkedin.com/in/attila-nagy-b6b776216" target="_blank" class="contact-item">
-    <span>💼</span>
-    <strong>LinkedIn:</strong>
-    <span class="val">nagy-attila-it</span>
-  </a>
-</div>
+<div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; padding: 60px 20px;" id="contact">
+  <div style="max-width: 900px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+
+    <!-- Elérhetőségek -->
+    <div class="contact-card">
+      <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 16px;">Kapcsolat</h2>
+      <p class="contact-intro">Rendszerüzemeltetéssel, hálózattervezéssel vagy IT-biztonsági felkészítéssel kapcsolatban keress az alábbi elérhetőségeken!</p>
+      <div class="contact-links">
+        <a href="tel:+36706389464" class="contact-item">
+          <span>📞</span>
+          <strong>Telefon:</strong>
+          <span class="val">+36 70 638 9464</span>
+        </a>
+        <a href="mailto:info@netopslab.hu" class="contact-item">
+          <span>✉</span>
+          <strong>Email:</strong>
+          <span class="val">info@netopslab.hu</span>
+        </a>
+        <a href="https://linkedin.com/in/attila-nagy-b6b776216" target="_blank" class="contact-item">
+          <span>💼</span>
+          <strong>LinkedIn:</strong>
+          <span class="val">nagy-attila-it</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Kapcsolatfelvételi űrlap -->
+    <div class="contact-card">
+      <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 16px;">Írj nekem</h2>
+      <form action="https://formspree.io/f/xdavlbwo" method="POST" style="display: flex; flex-direction: column; gap: 14px;">
+        <input
+          type="text"
+          name="name"
+          placeholder="Neved"
+          required
+          style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 16px; color: #fff; font-size: 0.95rem; outline: none;"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email címed"
+          required
+          style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 16px; color: #fff; font-size: 0.95rem; outline: none;"
+        />
+        <textarea
+          name="message"
+          placeholder="Miben segíthetek?"
+          rows="5"
+          required
+          style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 16px; color: #fff; font-size: 0.95rem; outline: none; resize: vertical;"
+        ></textarea>
+        <button
+          type="submit"
+          class="btn-primary"
+          style="justify-content: center; cursor: pointer; border: none;"
+        >Üzenet küldése →</button>
+      </form>
+    </div>
+
   </div>
 </div>
 
