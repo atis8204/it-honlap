@@ -2,17 +2,10 @@
 <html lang="hu">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KD2ZJV6WNY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KD2ZJV6WNY');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <!-- Alap SEO -->
   <title>IT Hálózatüzemeltetés & Rendszergazda | Nagy Attila</title>
   <meta name="description" content="20+ év tapasztalat hálózatüzemeltetés, szerverkezelés, tűzfal és VPN konfiguráció területén. Hatvan környéke és távoli munka." />
@@ -1047,6 +1040,23 @@ document.addEventListener("visibilitychange", () => {
 });
 
 draw();
+</script>
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      // 1. Google Analytics szkript dinamikus betöltése
+      const script = document.createElement('script');
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-KD2ZJV6WNY";
+      script.async = true;
+      document.head.appendChild(script);
+
+      // 2. Google Analytics inicializálása
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KD2ZJV6WNY');
+    }, 3000); // 3 másodperc várakozás az oldal betöltése után
+  });
 </script>
 </body>
 </html>
