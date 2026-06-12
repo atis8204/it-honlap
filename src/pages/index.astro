@@ -998,30 +998,54 @@ window.addEventListener('scroll', () => {
 <script>
 const canvas = document.getElementById("net-bg");
 const ctx = canvas.getContext("2d");
-function resize() { canvas.width=innerWidth; canvas.height=innerHeight; }
-resize(); window.addEventListener("resize", resize);
-const nodes = Array.from({length:70}, () => ({
-  x: Math.random()*innerWidth, y: Math.random()*innerHeight,
-  vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5,
+let animationId; // Az animáció azonosítója a leállításhoz
+
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+window.addEventListener("resize", resize);
+resize();
+
+const nodes = Array.from({length: 60}, () => ({ // 70-ről 60-ra csökkentve (alig látszik, de gyorsabb)
+  x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+  vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
 }));
+
 function draw() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
   for (const n of nodes) {
-    n.x+=n.vx; n.y+=n.vy;
-    if (n.x<0||n.x>canvas.width) n.vx*=-1;
-    if (n.y<0||n.y>canvas.height) n.vy*=-1;
-    ctx.beginPath(); ctx.arc(n.x,n.y,2,0,Math.PI*2);
-    ctx.fillStyle="rgba(59,130,246,0.65)"; ctx.fill();
+    n.x += n.vx; n.y += n.vy;
+    if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+    if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+    
+    ctx.beginPath(); 
+    ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = "#3b82f6"; 
+    ctx.fill();
   }
-  for (let i=0;i<nodes.length;i++) for (let j=i+1;j<nodes.length;j++) {
-    const a=nodes[i],b=nodes[j],d=Math.hypot(a.x-b.x,a.y-b.y);
-    if (d<130) {
-      ctx.beginPath(); ctx.strokeStyle=`rgba(59,130,246,${1-d/130})`;
-      ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+
+  // Kapcsolatok rajzolása
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const a = nodes[i], b = nodes[j];
+      const dx = a.x - b.x, dy = a.y - b.y;
+      const d2 = dx * dx + dy * dy; // Gyorsabb, mint a Math.hypot()
+
+      if (d2 < 16900) { // 130 * 130
+        ctx.beginPath(); 
+        ctx.strokeStyle = `rgba(59,130,246,${1 - Math.sqrt(d2) / 130})`;
+        ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      }
     }
   }
-  requestAnimationFrame(draw);
+  animationId = requestAnimationFrame(draw);
 }
+
+// LÁTHATÓSÁG FIGYELÉSE: Csak akkor fut, ha a lap aktív
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) cancelAnimationFrame(animationId);
+  else draw();
+});
+
 draw();
 </script>
 </body>
