@@ -1,107 +1,58 @@
 ---
-import { getCollection } from 'astro:content';
-const posts = (await getCollection('blog')).sort(
-  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
-);
 ---
 <!doctype html>
 <html lang="hu">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KD2ZJV6WNY"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KD2ZJV6WNY');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog | IT Hálózatüzemeltetés & Biztonság – netopslab.hu</title>
-  <meta name="description" content="IT hálózatüzemeltetés, rendszergazda tippek, NIS2 és IT biztonság témájú cikkek Nagy Attilától." />
+  <title>Blog | netopslab.hu</title>
+  <meta name="description" content="IT hálózatüzemeltetés, NIS2 és rendszergazda tippek KKV-knak." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
   <style>
-    :root {
-      --bg: #050816; --card: #0b1224;
-      --accent: #3b82f6; --text: #e5e7eb; --muted: #9ca3af;
-    }
+    :root { --bg: #050816; --card: #0b1224; --accent: #3b82f6; --text: #e5e7eb; --muted: #9ca3af; }
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, sans-serif; }
     body { background: var(--bg); color: var(--text); }
-    header {
-      position: fixed; top: 0; left: 0; width: 100%;
-      padding: 22px 20px; display: flex; justify-content: center;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100;
-    }
-    nav {
-      display: flex; gap: 35px; padding: 14px 40px;
-      background: rgba(30,41,59,0.55); backdrop-filter: blur(15px);
-      border-radius: 50px; border: 2px solid rgba(59,130,246,0.7);
-    }
+    header { position: fixed; top: 0; left: 0; width: 100%; padding: 22px 20px; display: flex; justify-content: center; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100; }
+    nav { display: flex; gap: 35px; padding: 14px 40px; background: rgba(30,41,59,0.55); backdrop-filter: blur(15px); border-radius: 50px; border: 2px solid rgba(59,130,246,0.7); }
     nav a { text-decoration: none; color: var(--muted); font-size: 1rem; font-weight: 600; letter-spacing: 0.9px; text-transform: uppercase; transition: 0.3s; }
     nav a:hover { color: var(--text); }
-
     .blog-wrap { max-width: 900px; margin: 0 auto; padding: 140px 24px 80px; }
     .blog-header { text-align: center; margin-bottom: 60px; }
     .blog-header h1 { font-size: 2.4rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
     .blog-header h1 span { color: var(--accent); }
     .blog-header p { color: var(--muted); font-size: 1.05rem; }
-
     .posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 24px; }
-    .post-card {
-      background: var(--card); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px; padding: 28px;
-      transition: all 0.3s; text-decoration: none; display: block;
-    }
+    .post-card { background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 28px; transition: all 0.3s; text-decoration: none; display: block; }
     .post-card:hover { transform: translateY(-4px); border-color: rgba(59,130,246,0.35); box-shadow: 0 12px 40px rgba(59,130,246,0.1); }
-    .post-tag {
-      display: inline-block; font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 1.2px; text-transform: uppercase;
-      padding: 4px 12px; border-radius: 20px; margin-bottom: 14px;
-      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd;
-    }
+    .post-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd; }
     .post-card h2 { color: #fff; font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
     .post-card p { color: #94a3b8; font-size: 0.92rem; line-height: 1.7; margin-bottom: 16px; }
     .post-meta { color: var(--muted); font-size: 0.82rem; }
-
     footer { padding: 32px; text-align: center; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.88rem; }
-
-    @media (max-width: 768px) {
-      .posts-grid { grid-template-columns: 1fr; }
-      nav { gap: 20px; padding: 12px 20px; }
-      nav a { font-size: 0.85rem; }
-    }
+    @media (max-width: 768px) { .posts-grid { grid-template-columns: 1fr; } nav { gap: 20px; padding: 12px 20px; } }
   </style>
 </head>
 <body>
   <header>
     <nav>
-      <a href="/">Főoldal</a>
-      <a href="/#services">Szolgáltatások</a>
-      <a href="/blog">Blog</a>
-      <a href="/#contact">Kapcsolat</a>
-    </nav>
+  <a href="/">Főoldal</a>
+  <a href="/#about">Rólam</a>
+  <a href="/#services">Szolgáltatások</a>
+  <a href="#projects">Projektek</a>
+  <a href="/blog">Blog</a>
+  <a href="/#contact">Kapcsolat</a>
+</nav>
   </header>
-
   <div class="blog-wrap">
-    <div class="blog-header">
-      <h1>IT <span>Blog</span></h1>
-      <p>Hálózatüzemeltetés, IT biztonság és rendszergazda tippek KKV-knak</p>
-    </div>
-
     <div class="posts-grid">
-      {posts.map(post => (
-        <a href={`/blog/${post.slug}`} class="post-card">
-          <div class="post-tag">{post.data.tag}</div>
-          <h2>{post.data.title}</h2>
-          <p>{post.data.description}</p>
-          <div class="post-meta">{post.data.date} · {post.data.readTime} perc olvasás</div>
-        </a>
-      ))}
+      <a href="/blog/nis2-kkv-utmutato" class="post-card">
+        <div class="post-tag">IT Biztonság</div>
+        <h2>NIS2 kötelező-e nekem? Útmutató KKV-knak egyszerűen</h2>
+        <p>A NIS2 irányelv 2024-től sok magyar vállalkozást érint. Ebből a cikkből megtudod érintett vagy-e, és mit kell tenned.</p>
+        <div class="post-meta">2026. június 13. · 6 perc olvasás</div>
+      </a>
     </div>
   </div>
-
   <footer>© 2026 Nagy Attila — IT Infrastructure & Network Security | Hatvan</footer>
 </body>
 </html>
