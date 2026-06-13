@@ -127,11 +127,13 @@ const { frontmatter } = Astro.props;
   </style>
 </head>
 <body>
+<canvas id="net-bg"></canvas>
   <header>
  <nav>
   <a href="/">Főoldal</a>
   <a href="/#about">Rólam</a>
   <a href="/#services">Szolgáltatások</a>
+  <a href="#projects">Projektek</a>
   <a href="/blog">Blog</a>
   <a href="/#contact">Kapcsolat</a>
 </nav>
@@ -156,5 +158,38 @@ const { frontmatter } = Astro.props;
   </div>
 
   <footer>© 2026 Nagy Attila — IT Infrastructure & Network Security | Hatvan</footer>
+  <script>
+const canvas = document.getElementById("net-bg");
+const ctx = canvas.getContext("2d");
+canvas.style.position = "fixed";
+canvas.style.inset = "0";
+canvas.style.zIndex = "0";
+canvas.style.pointerEvents = "none";
+function resize() { canvas.width=innerWidth; canvas.height=innerHeight; }
+resize(); window.addEventListener("resize", resize);
+const nodes = Array.from({length:70}, () => ({
+  x: Math.random()*innerWidth, y: Math.random()*innerHeight,
+  vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5,
+}));
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for (const n of nodes) {
+    n.x+=n.vx; n.y+=n.vy;
+    if (n.x<0||n.x>canvas.width) n.vx*=-1;
+    if (n.y<0||n.y>canvas.height) n.vy*=-1;
+    ctx.beginPath(); ctx.arc(n.x,n.y,2,0,Math.PI*2);
+    ctx.fillStyle="rgba(59,130,246,0.65)"; ctx.fill();
+  }
+  for (let i=0;i<nodes.length;i++) for (let j=i+1;j<nodes.length;j++) {
+    const a=nodes[i],b=nodes[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+    if (d<130) {
+      ctx.beginPath(); ctx.strokeStyle=`rgba(59,130,246,${1-d/130})`;
+      ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
 </body>
 </html>

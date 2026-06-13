@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/BlogPost.astro
 title: "NIS2 kötelező-e nekem? Útmutató KKV-knak egyszerűen"
-description: "A NIS2 irányelv 2024-től sok magyar vállalkozást érint. Ebből a cikkből megtudod érintett vagy-e, és mit kell tenned."
+description: "A NIS2 irányelv 2025. január 1-től kötelező Magyarországon. Ebből a cikkből megtudod érintett vagy-e, és mit kell tenned."
 date: "2026. június 13."
 tag: "IT Biztonság"
 slug: "nis2-kkv-utmutato"
@@ -12,21 +12,24 @@ A NIS2 irányelv nevét egyre több vállalkozó hallja — de a legtöbben nem 
 
 ## Mi az a NIS2?
 
-A NIS2 (Network and Information Security 2) az Európai Unió kiberbiztonsági irányelve, amelyet Magyarországon 2024-ben vezettek be. Célja hogy a vállalkozások IT rendszerei biztonságosabbak legyenek, és komolyabb védelmet nyújtsanak kibertámadásokkal szemben.
+A NIS2 (Network and Information Security 2) az Európai Unió kiberbiztonsági irányelve, amelyet Magyarországon a 2024. évi LXIX. törvény (Kiberbiztonsági tv.) alapján 2025. január 1-től kell alkalmazni. Célja hogy a vállalkozások IT rendszerei biztonságosabbak legyenek, és komolyabb védelmet nyújtsanak kibertámadásokkal szemben.
 
 ## Engem érint?
 
-Az irányelv **két kategóriába** sorolja a szervezeteket:
+A magyar 2024. évi LXIX. törvény szerint az érintettség két tényezőtől függ: **melyik szektorban** működsz, és **mekkora** a céged.
 
-### Alapvető szervezetek
-- 250 főnél több alkalmazott, **vagy**
-- 50 millió eurónál nagyobb éves árbevétel
+### Méret alapján érintett vagy ha:
+- Legalább **50 fő** alkalmazottad van, **vagy**
+- Éves árbevételed meghaladja a **10 millió eurót**
 
-### Fontos szervezetek
-- 50-249 alkalmazott, **és**
-- 10-50 millió eurós árbevétel
+**ÉS** a törvény mellékletében szereplő ágazatban működsz (energia, közlekedés, egészségügy, digitális infrastruktúra, gyártás, stb.)
 
-Ha egyik kategóriába sem esik a céged, **nem kötelező** a NIS2 megfelelőség — de ajánlott felkészülni, mert a szabályozás várhatóan bővül.
+Ha 50 főnél kevesebb alkalmazottad van **és** árbevételed nem haladja meg a 10 millió eurót, **nem vagy érintett** — kivéve ha az SZTFH külön azonosít.
+
+### Mérettől függetlenül érintett vagy ha:
+- Állami többségi tulajdonú szervezet vagy
+- A hatóság (SZTFH) alapvető vagy fontos szervezetként azonosít
+Ha 50 főnél kevesebb alkalmazottad van és nem kritikus szektorban működsz, **nem vagy érintett** — de érdemes ellenőrizni.
 
 ## Milyen szektorokat érint?
 
@@ -40,24 +43,26 @@ A NIS2 elsősorban ezeket a szektorokat érinti:
 
 ## Mit kell tenni ha érintett vagyok?
 
-**1. Kockázatértékelés** — fel kell mérni milyen IT kockázatok fenyegetik a szervezetet.
+**1. Regisztráció** — az érintett szervezeteknek regisztrálni kell az SZTFH (Szabályozott Tevékenységek Felügyeleti Hatósága) nyilvántartásába.
 
-**2. Biztonsági intézkedések** — tűzfal, VPN, hozzáférés-kezelés, titkosítás bevezetése vagy felülvizsgálata.
+**2. Kockázatértékelés** — fel kell mérni milyen IT kockázatok fenyegetik a szervezetet.
 
-**3. Incidenskezelési terv** — mit csinálsz ha kibertámadás ér? Ezt dokumentálni kell.
+**3. Biztonsági intézkedések** — tűzfal, VPN, hozzáférés-kezelés, titkosítás bevezetése vagy felülvizsgálata.
 
-**4. Mentési stratégia** — rendszeres backup, tesztelt visszaállítási folyamat.
+**4. Incidenskezelési terv** — mit csinálsz ha kibertámadás ér? Ezt dokumentálni kell.
 
-**5. Felhasználói tudatosság** — az alkalmazottakat oktatni kell az adatbiztonsági alapokról.
+**5. Mentési stratégia** — rendszeres backup, tesztelt visszaállítási folyamat.
 
-**6. Hatósági regisztráció** — az érintett szervezeteknek regisztrálni kell a SZTFH-nál (Szabályozott Tevékenységek Felügyeleti Hatósága).
+**6. Kiberbiztonsági audit** — az első auditot 2025. december 31-ig kell elvégeztetni.
+
+**7. Felhasználói tudatosság** — az alkalmazottakat oktatni kell az adatbiztonsági alapokról.
 
 ## Mi történik ha nem teljesítem?
 
 A NIS2 nem teljesítése komoly következményekkel járhat:
 
-- **Alapvető szervezeteknél:** akár 10 millió euró vagy az éves árbevétel 2%-a bírság
-- **Fontos szervezeteknél:** akár 7 millió euró vagy az árbevétel 1,4%-a
+- **Alapvető szervezeteknél:** az éves árbevétel 2%-a, de legalább 10 millió eurónak megfelelő forintösszeg
+- **Fontos szervezeteknél:** az éves árbevétel 1,4%-a, de legalább 7 millió eurónak megfelelő forintösszeg
 
 ## Összefoglalás
 
