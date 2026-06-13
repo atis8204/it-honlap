@@ -26,10 +26,16 @@ A magyar 2024. évi LXIX. törvény szerint az érintettség két tényezőtől 
 
 Ha 50 főnél kevesebb alkalmazottad van **és** árbevételed nem haladja meg a 10 millió eurót, **nem vagy érintett** — kivéve ha az SZTFH külön azonosít.
 
-### Mérettől függetlenül érintett vagy ha:
-- Állami többségi tulajdonú szervezet vagy
-- A hatóság (SZTFH) alapvető vagy fontos szervezetként azonosít
-Ha 50 főnél kevesebb alkalmazottad van és nem kritikus szektorban működsz, **nem vagy érintett** — de érdemes ellenőrizni.
+### Kivételek — kisebb cégek is érintettek lehetnek
+
+Még ha 50 főnél kevesebb alkalmazottad van, érintett lehetsz ha:
+
+- **Internetszolgáltató, DNS-szolgáltató** vagy domain névnyilvántartó vagy
+- **Bizalmi szolgáltató** vagy elektronikus aláírással foglalkozol
+- **Kritikus állami szerv közvetlen beszállítója** vagy
+- Az SZTFH külön alapvető vagy fontos szervezetként azonosít
+
+Ezekben az esetekben mérettől függetlenül vonatkozik rád a törvény.
 
 ## Milyen szektorokat érint?
 
@@ -61,8 +67,8 @@ A NIS2 elsősorban ezeket a szektorokat érinti:
 
 A NIS2 nem teljesítése komoly következményekkel járhat:
 
-- **Alapvető szervezeteknél:** az éves árbevétel 2%-a, de legalább 10 millió eurónak megfelelő forintösszeg
-- **Fontos szervezeteknél:** az éves árbevétel 1,4%-a, de legalább 7 millió eurónak megfelelő forintösszeg
+- **Alapvető szervezeteknél:** az éves árbevétel 2%-a vagy maximum 10 millió eurónak megfelelő forintösszeg
+- **Fontos szervezeteknél:** az éves árbevétel 1,4%-a vagy maximum 7 millió eurónak megfelelő forintösszeg
 
 ## Összefoglalás
 
