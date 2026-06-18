@@ -6,8 +6,9 @@ date: "2026. június 13."
 tag: "IT Biztonság"
 slug: "nis2-kkv-utmutato"
 readTime: 6
+ctaTitle: "Segíthetek a felkészülésben?"
+ctaText: "20+ év tapasztalattal segítek az IT infrastruktúra biztonságossá tételében."
 ---
-
 A NIS2 irányelv nevét egyre több vállalkozó hallja — de a legtöbben nem tudják pontosan mit jelent, és hogy vonatkozik-e rájuk. Ebben a cikkben egyszerűen, szakzsargon nélkül elmagyarázom.
 
 ## Mi az a NIS2?

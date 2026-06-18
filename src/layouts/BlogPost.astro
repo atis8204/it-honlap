@@ -177,10 +177,10 @@ const { frontmatter } = Astro.props;
     </div>
 
     <div class="cta-box">
-      <h3>Segíthetek a felkészülésben?</h3>
-      <p>20+ év tapasztalattal segítek az IT infrastruktúra biztonságossá tételében.</p>
-      <a href="/#contact" class="btn-primary">Kapcsolatfelvétel →</a>
-    </div>
+  <h3>{frontmatter.ctaTitle || "Segíthetek az IT-döntésben?"}</h3>
+  <p>{frontmatter.ctaText || "Megnézem a jelenlegi helyzetet és elmondом, szerintem mi lenne a legjobb irány."}</p>
+  <a href="/#contact" class="btn-primary">Kapcsolatfelvétel →</a>
+</div>
   </div>
 
   <footer>© 2026 Nagy Attila — IT Infrastructure & Network Security | Hatvan</footer>
