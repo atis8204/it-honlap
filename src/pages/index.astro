@@ -982,15 +982,25 @@ const cObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.counter').forEach(el => cObs.observe(el));
 
-// Active nav on scroll
+// Active nav on scroll and on different pages
+const pathname = window.location.pathname;
+const navLinks = document.querySelectorAll('nav a');
+
+navLinks.forEach(link => {
+  if (link.getAttribute('href') === pathname) {
+    link.classList.add('active');
+  }
+});
+
 const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a[href^="#"]');
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
   navLinks.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#'+current) a.classList.add('active');
+    if (a.getAttribute('href').startsWith('#')) {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#'+current) a.classList.add('active');
+    }
   });
 });
 </script>
