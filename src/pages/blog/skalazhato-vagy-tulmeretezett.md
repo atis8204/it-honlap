@@ -8,12 +8,6 @@ slug: "skalazhato-vagy-tulmeretezett"
 readTime: 6
 ---
 
-# Skálázható vagy csak túlméretezett? Hogyan tervezz IT-infrastruktúrát egy növekvő cégnek
-
-*Szerző: Nagy Attila | netopslab.hu | Olvasási idő: ~6 perc*
-
----
-
 Van egy hiba, amit sok cég elkövet, amikor IT-infrastruktúrát vásárol: vagy túl kicsit vesz, és fél év múlva már fuldoklik, vagy túl nagyot, és évekig fizet olyan kapacitásért, amit soha nem használ ki.
 
 A jó tervezés valahol a kettő között van. És ez nem szerencse kérdése — ez mérnöki munka. Húsz év alatt épp elég rendszerbővítést és hardvercserét láttam ahhoz, hogy tudjam: a legtöbb probléma abból ered, hogy valaki vagy alul-, vagy túllőtte a méretezést. Ebben a cikkben leírom, hogyan érdemes ezt átgondolni — hogyan kerüld el a túlméretezést úgy, hogy közben nem fejlődsz bele a rendszerbe fél év alatt.
